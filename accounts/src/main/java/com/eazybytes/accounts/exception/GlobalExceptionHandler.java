@@ -39,7 +39,7 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleGlobalException(Exception exception,
-                                                                  WebRequest webRequest) {
+                                                                  WebRequest webRequest) { // This Will Handle the Run time Exception if the Exception is not handled, then this will trigger
         ErrorResponseDto errorResponseDTO = new ErrorResponseDto(
                 webRequest.getDescription(false),
                 HttpStatus.INTERNAL_SERVER_ERROR,
