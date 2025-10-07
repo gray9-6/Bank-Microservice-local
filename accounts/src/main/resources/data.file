@@ -1,0 +1,1 @@
+--During start up of application  if we want to create the data then we add the insert statement in this file(data.sql)
