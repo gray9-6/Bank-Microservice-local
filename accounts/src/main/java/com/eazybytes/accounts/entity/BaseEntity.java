@@ -59,20 +59,20 @@ public class BaseEntity { // This is the parent class for all the entity classes
         import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
         import java.util.Optional;
         @Configuration
-        @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
+        @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
         public class JpaConfig {
             @Bean
             public AuditorAware<String> auditorProvider() {
-                return new AuditorAwareImpl();
+                return new AuditAwareImpl();
             }
         }
 
 
         import org.springframework.data.domain.AuditorAware;
         import java.util.Optional;
-        @Component("auditorAwareImpl")// To avoid conflict with Spring Boot's default AuditorAware bean name "auditorAware".We are giving a custom name "auditorAwareImpl"
+        @Component("auditAwareImpl")// To avoid conflict with Spring Boot's default AuditorAware bean name "auditorAware".We are giving a custom name "auditorAwareImpl"
 
-        public class AuditorAwareImpl implements AuditorAware<String> { // Here, we are using String as the type of the user identifier Because our created by and update by is of String type. It can be changed to any other type as per the requirement.
+        public class AuditAwareImpl implements AuditorAware<String> { // Here, we are using String as the type of the user identifier Because our created by and update by is of String type. It can be changed to any other type as per the requirement.
             1. We need to implement the AuditorAware interface and override the getCurrentAuditor() method to return the current user.
             2. In this example, we are returning a hardcoded value. In a real application, we can get the current user from the security context or from a thread-local variable.
             3. The getCurrentAuditor() method should return an Optional object. If the current user is not available, we can return Optional.empty().

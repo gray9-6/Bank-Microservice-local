@@ -1,4 +1,4 @@
-package audit;
+package com.eazybytes.accounts.audit;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
@@ -7,9 +7,9 @@ import java.util.Optional;
 
 
 // @Component annotation registers the class as a Spring Bean in the Spring Application Context.
-// So that it can be auto-detected through classpath scanning.And the name "auditorAwareImpl" is the bean name.So that we can inject it wherever needed.
-@Component("auditorAwareImpl")// To avoid conflict with Spring Boot's default AuditorAware bean name "auditorAware".We are giving a custom name "auditorAwareImpl"
-public class AuditorAwareImpl implements AuditorAware<String> { // Here, we are using String as the type of the user identifier Because our created by and update by is of String type. It can be changed to any other type as per the requirement.
+// So that it can be auto-detected through classpath scanning.And the name "auditAwareImpl" is the bean name.So that we can inject it wherever needed.
+@Component("auditAwareImpl")// To avoid conflict with Spring Boot's default AuditorAware bean name "auditorAware".We are giving a custom name "auditAwareImpl"
+public class AuditAwareImpl implements AuditorAware<String> { // Here, we are using String as the type of the user identifier Because our created by and update by is of String type. It can be changed to any other type as per the requirement.
 
     /* 1. We need to implement the AuditorAware interface and override the getCurrentAuditor() method to return the current user.
        2. In this example, we are returning a hardcoded value. In a real application, we can get the current user from the security context or from a thread-local variable.

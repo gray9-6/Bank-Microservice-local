@@ -1,0 +1,11 @@
+H2 CONSOLE
+    endpoint :- http://localhost:8080/h2-console
+    db :- jdbc:h2:mem:testdb
+    username :- sa
+    password :- emptySpace(nothing)
+
+
+SWAGGER
+    endpoint :- http://localhost:8080/swagger-ui.html
+    api-docs :- http://localhost:8080/v3/api-docs
+    ui :- http://localhost:8080/swagger-ui/index.html

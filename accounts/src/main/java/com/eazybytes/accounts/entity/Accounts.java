@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity//This Annotation is used to define a class as a table in the database.Means this class is a table in the database.
-@Table(name = "customer")
+@Table(name = "accounts")
 @Getter
 @Setter
 @ToString
