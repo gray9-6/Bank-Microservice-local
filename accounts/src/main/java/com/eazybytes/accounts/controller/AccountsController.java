@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.*;
 // and specifies that all responses will be in JSON format
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
-@Validated
+@Validated // Enables validation for method parameters in this controller, such as @RequestParam and @PathVariable, this tells Spring to enforce validation rules on the parameters of the methods within this controller.
 public class AccountsController {
 
     private IAccountsService iAccountsService;
 
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto) {
+    public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto) { // @Valid annotation is used to trigger validation on the CustomerDto object based on the constraints defined in its class.
         iAccountsService.createAccount(customerDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -36,7 +36,7 @@ public class AccountsController {
 
     @GetMapping("/fetch")
     public ResponseEntity<CustomerDto> fetchAccountDetails(@RequestParam
-                                                           @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+                                                           @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits") // Validation to ensure the mobile number is exactly 10 digits
                                                            String mobileNumber) {
         CustomerDto customerDto = iAccountsService.fetchAccount(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(customerDto);
@@ -44,7 +44,7 @@ public class AccountsController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<ResponseDto> updateAccountDetails(@Valid @RequestBody CustomerDto customerDto) {
+    public ResponseEntity<ResponseDto> updateAccountDetails(@Valid @RequestBody CustomerDto customerDto) { // @Valid annotation is used to trigger validation on the CustomerDto object based on the constraints defined in its class.
         boolean isUpdated = iAccountsService.updateAccount(customerDto);
         if(isUpdated) {
             return ResponseEntity
@@ -60,7 +60,7 @@ public class AccountsController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDto> deleteAccountDetails(@RequestParam
-                                                            @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+                                                            @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits") // Validation to ensure the mobile number is exactly 10 digits
                                                             String mobileNumber) {
         boolean isDeleted = iAccountsService.deleteAccount(mobileNumber);
         if(isDeleted) {
