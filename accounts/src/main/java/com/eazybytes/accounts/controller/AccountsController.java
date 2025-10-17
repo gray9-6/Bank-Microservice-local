@@ -42,11 +42,13 @@ public class AccountsController {
                     responseCode = "201",
                     description = "HTTP Status CREATED"
             ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
+
+            // This Defines a Schema Object In API response for HTTP status code 500 (Internal Server Error)
+            @ApiResponse( //swagger api response annotation. It is used to document a single possible response for an API operation in the generated OpenAPI documentation.
+                    responseCode = "500", // The HTTP status code for the response, indicating that this response corresponds to an internal server error.
+                    description = "HTTP Status Internal Server Error", // A brief description of the response, indicating that it represents an internal server error.
+                    content = @Content( //swagger content annotation. It is used to describe the content of a response or request body in the generated OpenAPI documentation.
+                            schema = @Schema(implementation = ErrorResponseDto.class) // With this i am telling to my Spring documentation. For this Update Operation when there is a 500 error, the response body will follow the structure defined in the ErrorResponseDto class.
                     )
             )
     }
