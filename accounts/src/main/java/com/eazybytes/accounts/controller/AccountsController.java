@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +27,11 @@ import org.springframework.web.bind.annotation.*;
 )
 @RestController // Marks this class as a RESTful web service controller, allowing it to handle HTTP requests and return JSON/XML responses
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE}) // Sets the base URL path for all endpoints in this controller to "/api" and specifies that all responses will be in JSON format
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Validated // Enables validation for method parameters in this controller, such as @RequestParam and @PathVariable, this tells Spring to enforce validation rules on the parameters of the methods within this controller.
 public class AccountsController {
 
-    private IAccountsService iAccountsService;
+    private final IAccountsService iAccountsService;
 
 
     @Operation( //swagger operation annotation. It is used to describe a single API operation or endpoint in the generated OpenAPI documentation.
